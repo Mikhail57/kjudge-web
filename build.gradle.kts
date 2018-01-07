@@ -4,22 +4,21 @@ group = "ru.kjudge"
 version = "0.1-SNAPSHOT"
 
 buildscript {
-    var kotlin_version: String by extra
-    val springBootVersion: String = "1.5.9.RELEASE"
-    kotlin_version = "1.2.10"
+    var kotlinVersion: String by extra
+    val springBootVersion = "1.5.9.RELEASE"
+    kotlinVersion = "1.2.10"
 
     repositories {
         mavenCentral()
-        maven {
-            url = uri("https://plugins.gradle.org/m2/")
-        }
     }
-    
+
     dependencies {
-        classpath(kotlin("gradle-plugin", kotlin_version))
+        classpath(kotlinModule("gradle-plugin", kotlinVersion))
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
+        //Required for kotlin-spring plugin
+        classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
     }
-    
+
 }
 
 apply {
@@ -29,14 +28,14 @@ apply {
     plugin("org.springframework.boot")
 }
 
-val kotlin_version: String by extra
+val kotlinVersion: String by extra
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile(kotlin("stdlib-jdk8", kotlin_version))
+    compile(kotlinModule("stdlib-jdk8", kotlinVersion))
 
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-freemarker")
