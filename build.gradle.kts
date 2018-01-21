@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.version
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "ru.kjudge"
@@ -13,7 +14,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlinModule("gradle-plugin", kotlinVersion))
+        classpath(kotlin("gradle-plugin", kotlinVersion))
         classpath("org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion")
         //Required for kotlin-spring plugin
         classpath("org.jetbrains.kotlin:kotlin-allopen:$kotlinVersion")
@@ -21,11 +22,11 @@ buildscript {
 
 }
 
-apply {
-    plugin("java")
-    plugin("kotlin")
-    plugin("kotlin-spring")
-    plugin("org.springframework.boot")
+plugins {
+    java
+    idea
+    kotlin("jvm") version ("1.2.20")
+    id("org.springframework.boot") version ("1.5.9.RELEASE")
 }
 
 val kotlinVersion: String by extra
@@ -35,12 +36,16 @@ repositories {
 }
 
 dependencies {
-    compile(kotlinModule("stdlib-jdk8", kotlinVersion))
+    compile(kotlin("stdlib-jdk8", kotlinVersion))
 
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
+//    compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-freemarker")
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
     compile("org.springframework.boot:spring-boot-starter-web-services")
+    compile("org.springframework.boot:spring-boot-starter-amqp")
+
+    compile("com.h2database:h2:1.4.196")
 
     testCompile("junit", "junit", "4.12")
 }
