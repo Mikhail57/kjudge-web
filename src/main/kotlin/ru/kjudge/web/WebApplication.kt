@@ -18,7 +18,7 @@ class WebApplication {
     @Autowired
     lateinit var client: RunnerClient
 
-    @Bean
+//    @Bean
     fun runner() = CommandLineRunner {
         for (i in 0..40 step 10) {
             val code = """

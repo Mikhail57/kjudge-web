@@ -1,12 +1,8 @@
 package ru.kjudge.web.config
 
 import org.springframework.context.annotation.Configuration
-import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter
-import org.springframework.amqp.support.converter.MessageConverter
-import org.springframework.context.annotation.Bean
-
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories
 
 @Configuration
-class Config {
-
-}
+@EnableMongoRepositories(basePackages = ["ru.kjudge.web.repository"])
+class Config
