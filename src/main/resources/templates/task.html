@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--/*@thymesVar id="task" type="ru.kjudge.web.entity.Task"*/-->
+    <title th:text="'Задача | '+${task.getTitle()}">Заголовок</title>
+    <link rel="stylesheet" href="/css/main.css" th:href="@{/css/main.css}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <!--/*@thymesVar id="task" type="ru.kjudge.web.entity.Task"*/-->
+    <h1>
+        <span th:text="'Задача | '+${task.getTitle()}" th:remove="tag"></span>
+        <small><span class='badge badge-success' th:text="${task.getCost()}+' баллов'">20 баллов</span></small>
+    </h1>
+    <p th:utext="${task.getDescription()}">Описание</p>
+    <div class="try">
+        <form method="POST" enctype="multipart/form-data" action="">
+            <table>
+                <tr>
+                    <td>File to upload:</td>
+                    <td><input type="file" name="file"/></td>
+                    <input type="hidden" th:value="${task.getId()}">
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="submit" value="Upload"/></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <h2>Попытки</h2>
+    <!--/*@thymesVar id="solutions" type="java.util.List<ru.kjudge.web.entity.UserSolution>"*/-->
+    <div class="solution" th:each="solution : ${solutions}">
+        <h3 th:text="'ID: '+${solution.getId()}">ID: 123</h3>
+        <div class="badge" th:text="${solution.getStatus()}"></div>
+        <div th:id="${solution.getId()}">
+            <table class="table">
+                <thead>
+                <th>ID</th>
+                <th>Result</th>
+                </thead>
+                <tr th:each="res : ${solution.getResults()}">
+                    <td th:text="123"></td>
+                    <td th:class="${(res)? 'alert-success' : 'alert-danger'}" th:text="${res}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
