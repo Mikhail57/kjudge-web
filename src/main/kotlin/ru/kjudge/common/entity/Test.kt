@@ -1,4 +1,4 @@
-package ru.kjudge.web.entity
+package ru.kjudge.common.entity
 
 data class Test(
         val test: String,

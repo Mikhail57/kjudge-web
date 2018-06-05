@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.*
 import org.springframework.boot.autoconfigure.*
 import org.springframework.context.annotation.Bean
-import ru.kjudge.web.entity.Limits
-import ru.kjudge.web.entity.Message
-import ru.kjudge.web.entity.Test
+import ru.kjudge.common.entity.Limits
+import ru.kjudge.common.entity.Message
+import ru.kjudge.common.entity.Test
 
 
 @SpringBootApplication
@@ -20,16 +20,18 @@ class WebApplication {
 
     @Bean
     fun runner() = CommandLineRunner {
-        log.info("I'm here!!!")
-        val code = """
-            #include <stdio.h>
+        for (i in 0..40 step 10) {
+            val code = """
+            #include <iostream>
             int main() {
-                printf("Lol, kek, cheburek");
+                std::cout << "COUT";
+                std::cerr << "CERR";
                 return 0;
             }
-        """.trimIndent()
-        val message = Message(1, "gcc", code, listOf(Test("lol", Limits(1000, 1000, 1000))))
-        client.send(message)
+            """.trimIndent()
+            val message = Message(i.toLong(), "gcc", code, listOf(Test("lol", Limits(1000, 1000, 1000))))
+            client.send(message)
+        }
     }
 }
 

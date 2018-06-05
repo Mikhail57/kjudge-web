@@ -9,6 +9,4 @@ import org.springframework.context.annotation.Bean
 @Configuration
 class Config {
 
-    @Bean
-    fun producerJackson2MessageConverter(): MessageConverter = Jackson2JsonMessageConverter()
 }

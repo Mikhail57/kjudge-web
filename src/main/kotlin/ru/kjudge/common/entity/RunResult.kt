@@ -1,4 +1,4 @@
-package ru.kjudge.web.entity
+package ru.kjudge.common.entity
 
 data class RunResult(
         val status: String,
