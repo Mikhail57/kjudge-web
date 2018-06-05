@@ -12,5 +12,7 @@ data class User(
         var firstName: String = "",
         var lastName: String = "",
         var middleName: String = "",
-        var group: String = ""
+        var group: String = "",
+        var email: String = "",
+        var passwordHash: String = ""
 )

@@ -22,13 +22,9 @@ class RunnerClient {
     @Autowired
     lateinit var exchange: DirectExchange
 
-    fun send(message: Message) {
+    fun send(message: Message, success: (RunResult?) -> Unit, error: (Throwable) -> Unit) {
         val promise = template.convertSendAndReceive<RunResult>(exchange.name, "rpc", message)
-        promise.addCallback({
-            log.info("Result from running server: $it")
-        }, {
-            log.info("Error!!!!1!")
-        })
+        promise.addCallback(success, error)
     }
 
 }

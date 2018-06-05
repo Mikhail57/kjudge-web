@@ -19,20 +19,20 @@ class WebApplication {
     lateinit var client: RunnerClient
 
 //    @Bean
-    fun runner() = CommandLineRunner {
-        for (i in 0..40 step 10) {
-            val code = """
-            #include <iostream>
-            int main() {
-                std::cout << "COUT";
-                std::cerr << "CERR";
-                return 0;
-            }
-            """.trimIndent()
-            val message = Message(i.toLong(), "gcc", code, listOf(Test("lol", Limits(1000, 1000, 1000))))
-            client.send(message)
-        }
-    }
+//    fun runner() = CommandLineRunner {
+//        for (i in 0..40 step 10) {
+//            val code = """
+//            #include <iostream>
+//            int main() {
+//                std::cout << "COUT";
+//                std::cerr << "CERR";
+//                return 0;
+//            }
+//            """.trimIndent()
+//            val message = Message(i.toLong(), "gcc", code, listOf(Test("lol", Limits(1000, 1000, 1000))))
+//            client.send(message)
+//        }
+//    }
 }
 
 fun main(args: Array<String>) {
