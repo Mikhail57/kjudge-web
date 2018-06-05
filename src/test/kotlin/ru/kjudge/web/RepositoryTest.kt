@@ -30,25 +30,27 @@ class RepositoryTest {
         taskRepository.deleteAll()
 
         taskRepository.insert(
-                Task(title = "Первая задача", description = "Одна из самых важный задач в вашей жизни!",
-                        cost = 15.0, tests = mutableListOf(
-                        ru.kjudge.web.entity.Test("test1", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test2", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test3", "lol, kek, cheburek")
+                Task(title = "Без лола и кека, нет...", description = "Нужно вывести фразу 'lol, kek, cheburek' (без кавычек)",
+                        cost = 1.0, tests = mutableListOf(
+                        ru.kjudge.web.entity.Test("", "lol, kek, cheburek"),
+                        ru.kjudge.web.entity.Test("", "lol, kek, cheburek"),
+                        ru.kjudge.web.entity.Test("", "lol, kek, cheburek")
                 )))
         taskRepository.insert(
-                Task(title = "Вторая задача", description = "Что ты еще тут ожидал увидеть? Ты что, упоролся?",
-                        cost = 15.0, tests = mutableListOf(
-                        ru.kjudge.web.entity.Test("test1", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test2", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test3", "lol, kek, cheburek")
+                Task(title = "Сложение", description = "На вход подается 2 целых числа (x, y), такие что, -10000 <= x,y <= 10000.<br> Необходимо найти их сумму и вывести ее.",
+                        cost = 5.0, tests = mutableListOf(
+                        ru.kjudge.web.entity.Test("100 -1000", "-900"),
+                        ru.kjudge.web.entity.Test("100 2000", "2100"),
+                        ru.kjudge.web.entity.Test("100 1", "101"),
+                        ru.kjudge.web.entity.Test("-200 1", "-199")
                 )))
         taskRepository.insert(
-                Task(title = "Третья задача", description = "Да, опять лолы, кеки и чебуреки. Тебе не надоело еще смотреть на описание?",
-                        cost = 15.0, tests = mutableListOf(
-                        ru.kjudge.web.entity.Test("test1", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test2", "lol, kek, cheburek"),
-                        ru.kjudge.web.entity.Test("test3", "lol, kek, cheburek")
+                Task(title = "Повторюша", description = "Тебе предстоит познать дзен (вывести целочисленное значение x, поданное на вход; -1000 <= x <= 1000)",
+                        cost = 2.0, tests = mutableListOf(
+                        ru.kjudge.web.entity.Test("-1000", "-1000"),
+                        ru.kjudge.web.entity.Test("100", "100"),
+                        ru.kjudge.web.entity.Test("1000", "1000"),
+                        ru.kjudge.web.entity.Test("-40", "-40")
                 )))
 
         assert(taskRepository.count() == 3L)

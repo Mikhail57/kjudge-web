@@ -13,8 +13,8 @@
     <h1>Задачи</h1>
     <!--/*@thymesVar id="tasks" type="java.util.List<ru.kjudge.web.entity.Task>"*/-->
     <div class="task" th:each="task : ${tasks}">
-        <h2><a href="task/1" th:href="@{'/task/'+${task.getId()}}" th:text="${task.getTitle()}">Название таска</a></h2>
-        <p th:text="${task.getDescription()}">Описание</p>
+        <h2><a th:href="@{'/task/'+${task.getId()}}" th:text="${task.getTitle()}">Название таска</a></h2>
+        <p th:utext="${task.getDescription()}">Описание</p>
     </div>
 </div>
 </body>
